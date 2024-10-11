@@ -4,24 +4,17 @@
 // Implemented features:
 //  [X] Renderer: User texture binding. Use 'LPDIRECT3DTEXTURE9' as ImTextureID. Read the FAQ about ImTextureID in imgui.cpp.
 
-// You can copy and use unmodified imgui_impl_* files in your project. See main.cpp for an example of using this.
-// If you are new to dear imgui, read examples/README.txt and read the documentation at the top of imgui.cpp.
-// https://github.com/ocornut/imgui
+#ifndef IMGUI_IMPL_API
+#define IMGUI_IMPL_API __declspec(dllexport)
+#endif
 
-// CHANGELOG 
-// (minor and older changes stripped away, please see git history for details)
-//  2018-11-30: Misc: Setting up io.BackendRendererName so it can be displayed in the About Window.
-//  2018-06-08: Misc: Extracted imgui_impl_dx9.cpp/.h away from the old combined DX9+Win32 example.
-//  2018-06-08: DirectX9: Use draw_data->DisplayPos and draw_data->DisplaySize to setup projection matrix and clipping rectangle.
-//  2018-05-07: Render: Saving/restoring Transform because they don't seem to be included in the StateBlock. Setting shading mode to Gouraud.
-//  2018-02-16: Misc: Obsoleted the io.RenderDrawListsFn callback and exposed ImGui_ImplDX9_RenderDrawData() in the .h file so you can call it yourself.
-//  2018-02-06: Misc: Removed call to ImGui::Shutdown() which is not available from 1.60 WIP, user needs to call CreateContext/DestroyContext themselves.
+#pragma once
 
-#include "imgui.h"
+#include <d3d9.h> // Specific to imgui_impl_dx9
 #include "imgui_impl_dx9.h"
+#include "imgui.h"
 
 // DirectX
-#include <d3d9.h>
 #define DIRECTINPUT_VERSION 0x0800
 #include <dinput.h>
 
